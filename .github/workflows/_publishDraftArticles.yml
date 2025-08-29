@@ -1,0 +1,71 @@
+name: _publishDraftArticles
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect articles directory
+        id: detect
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(articles/*.md)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "found=false" >> $GITHUB_OUTPUT
+          else
+            echo "found=true" >> $GITHUB_OUTPUT
+            printf '%s\n' "${files[@]}"
+          fi
+
+      - name: "Set frontmatter published: true"
+        if: steps.detect.outputs.found == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          changed=0
+          for f in articles/*.md; do
+            [ -e "$f" ] || continue
+            # Check if frontmatter exists and contains published: false
+            if awk 'BEGIN{inmeta=0}
+              /^---[[:space:]]*$/{ if(inmeta==0){inmeta=1; next} else {exit} }
+              inmeta==1 && $0 ~ /^published:[[:space:]]*false[[:space:]]*$/ { exit 0 }
+              END{ exit 1 }' "$f"; then
+              awk 'BEGIN{inmeta=0}
+                /^---[[:space:]]*$/{ print; if(inmeta==0){inmeta=1; next} else {inmeta=0; next} }
+                inmeta==1 && $0 ~ /^published:[[:space:]]*false[[:space:]]*$/ { print "published: true"; next }
+                { print }' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+              echo "Updated: $f"
+              changed=1
+            fi
+          done
+          if [ $changed -eq 0 ]; then
+            echo "No updates needed."
+          fi
+
+      - name: Commit and push changes
+        if: steps.detect.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          git config user.name "gha-publish-zenn[bot]"
+          git config user.email "gha-publish-zenn@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git add articles/*.md
+          git commit -m "chore(zenn): set published: true for articles (${GITHUB_SHA::7})"
+          git push

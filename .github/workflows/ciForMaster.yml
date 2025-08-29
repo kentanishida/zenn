@@ -1,0 +1,17 @@
+name: ciForMaster
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  publish-articles:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    uses: ./.github/workflows/_publishDraftArticles.yml
+    permissions:
+      contents: write
+    secrets: inherit
