@@ -3,7 +3,7 @@ title: "Alexa スキルを GitHub Actions でデプロイする"
 emoji: "🚀"
 type: "tech"
 topics: ["alexa", "githubactions"]
-published: false
+published: true
 ---
 
 Alexa のスキル開発において、毎度デプロイするのが面倒だったため GitHub Actions を用いて自動でデプロイする仕組みを作りました。
