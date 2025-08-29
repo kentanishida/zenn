@@ -1,0 +1,61 @@
+{
+  "workbench.colorCustomizations": {
+  // タイトルバーの設定（さらに濃いブルー、前景は白）
+  "titleBar.activeBackground": "#0F4C81",
+  "titleBar.inactiveBackground": "#0F4C8199",
+  "titleBar.activeForeground": "#FFFFFF",
+  "titleBar.inactiveForeground": "#FFFFFF",
+
+  // アクティビティバーの設定（さらに濃いブルー、前景は白）
+  "activityBar.background": "#0F4C81",
+  "activityBar.foreground": "#FFFFFF",
+  "activityBarBadge.background": "#3EA8FF",
+  "activityBarBadge.foreground": "#0B1220",
+
+    // サイドバーの設定（従来のグレー基調）
+    "sideBar.background": "#252526",
+    "sideBar.foreground": "#D4D4D4",
+
+    // エディターの設定
+    "editor.background": "#1E1E1E",
+    "editor.foreground": "#D4D4D4",
+    "editor.lineHighlightBackground": "#2E2E2E",
+    "editorCursor.foreground": "#D4D4D4",
+
+    // タブの設定
+    "tab.activeBackground": "#1E1E1E",
+    "tab.activeForeground": "#D4D4D4",
+    "tab.inactiveBackground": "#2E2E2E",
+    "tab.inactiveForeground": "#CCCCCC",
+
+  // ステータスバーの設定（さらに濃いブルー、前景は白）
+  "statusBar.background": "#0F4C81",
+  "statusBar.foreground": "#FFFFFF",
+  "statusBar.noFolderBackground": "#0F4C81",
+  "statusBar.debuggingBackground": "#0F4C81",
+
+  // ボタンの設定（さらに濃いめの青）
+  "button.background": "#1246AE",
+  "button.foreground": "#FFFFFF",
+
+  // リストやサイドバー内の選択項目の設定（さらに濃いめの青）
+  "list.activeSelectionBackground": "#1246AE",
+  "list.inactiveSelectionBackground": "#0F3A7A",
+
+  // タブのアクセント（アクティブタブ上部にZennブルー）
+  "tab.activeBorderTop": "#3EA8FF",
+    
+  // フォーカスや枠線のアクセント
+  "focusBorder": "#3EA8FF",
+
+    // スクロールバーの設定
+    "scrollbarSlider.background": "#45454566",
+    "scrollbarSlider.hoverBackground": "#45454599",
+    "scrollbarSlider.activeBackground": "#454545CC"
+  },
+  "cSpell.ignoreWords": [
+    "pointfuel",
+    "uuidv4",
+    "Waypo"
+  ]
+}

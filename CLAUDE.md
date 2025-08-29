@@ -64,3 +64,6 @@ pnpm install
 - issue と言われれば github の repository の issue を必ず参照すること
 - PJT と言われれば、ユーザー配下にある全体管理というプロジェクトを必ず参照すること
 - issue を作る時は、repository 横断で置かれている[ここ](https://github.com/kentanishida/.github)のテンプレートを必ず参照すること
+
+
+
